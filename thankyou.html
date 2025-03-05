@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - True Vote</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ffffff, #01874D);
+        }
+        
+        .container {
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid #000000;
+            border-radius: 10px;
+        }
+        
+        h1 {
+            color: #000000;
+            margin-bottom: 20px;
+        }
+        
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #10c856;
+            color: white;
+            border-radius: 5px;
+        }
+        
+        button:hover {
+            background-color: #12aa0d;
+        }
+        
+        .message {
+            margin: 15px 0;
+            color: #333;
+            font-size: 1em;
+        }
+        
+        footer {
+            background-color: #000000;
+            padding: 10px 0;
+            text-align: center;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-6">
+    <div class="bg-white p-6 rounded-lg shadow-lg text-center max-w-lg w-full">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Thank You for Voting!</h1>
+        <p class="text-lg text-gray-600 mb-6">Your vote has been successfully recorded.</p>
+        <img src="logo.png" alt="Success" class="w-24 h-24 mx-auto mb-4">
+        <p class="text-gray-500">Your participation helps shape the future.</p>
+        <div class="mt-6">
+            <a href="index.html" class="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg text-lg font-semibold transition duration-300">Return to Home</a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Selection - True Vote</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffffff, #01874D);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid #000;
+            border-radius: 10px;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+        
+        .candidate {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        
+        .candidate img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        input[type="radio"] {
+            transform: scale(1.5);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #10c856;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin-top: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .submit-btn:hover {
+            background-color: #0fa045;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-2xl font-bold text-center mb-4">Select Your Candidates</h2>
+
+        <div id="positions"></div>
+
+        <button onclick="submitVote()" class="submit-btn">Submit Vote</button>
+    </div>
+
+    <script>
+        const candidates = {
+            'President': [{
+                name: 'John Doe',
+                party: 'Green Party',
+                img: 'https://via.placeholder.com/50'
+            }, {
+                name: 'Jane Smith',
+                party: 'Progress Party',
+                img: 'https://via.placeholder.com/50'
+            }],
+            'Governor': [{
+                name: 'Alice Brown',
+                party: 'Unity Party',
+                img: 'https://via.placeholder.com/50'
+            }, {
+                name: 'Bob White',
+                party: 'Freedom Party',
+                img: 'https://via.placeholder.com/50'
+            }],
+            'Senator': [{
+                name: 'Charlie Black',
+                party: 'Justice Party',
+                img: 'https://via.placeholder.com/50'
+            }, {
+                name: 'David Grey',
+                party: 'People’s Voice',
+                img: 'https://via.placeholder.com/50'
+            }],
+            'Women Rep': [{
+                name: 'Emily Green',
+                party: 'Equality Party',
+                img: 'https://via.placeholder.com/50'
+            }, {
+                name: 'Fiona Red',
+                party: 'Progressive Alliance',
+                img: 'https://via.placeholder.com/50'
+            }],
+            'MP': [{
+                name: 'George Blue',
+                party: 'Democratic Party',
+                img: 'https://via.placeholder.com/50'
+            }, {
+                name: 'Helen Purple',
+                party: 'United Front',
+                img: 'https://via.placeholder.com/50'
+            }],
+            'MCA': [{
+                name: 'Isaac Brown',
+                party: 'New Generation',
+                img: 'https://via.placeholder.com/50'
+            }, {
+                name: 'Jenny White',
+                party: 'Community First',
+                img: 'https://via.placeholder.com/50'
+            }]
+        };
+
+        function renderCandidates() {
+            const container = document.getElementById("positions");
+            container.innerHTML = "";
+
+            for (const position in candidates) {
+                let html = `<h3 class='text-xl font-semibold mt-4'>${position}</h3>`;
+                candidates[position].forEach((candidate) => {
+                    html += `
+                        <div class="candidate">
+                            <img src="${candidate.img}" alt="${candidate.name}">
+                            <span>${candidate.name} (${candidate.party})</span>
+                            <input type="radio" name="${position}" value="${candidate.name}">
+                        </div>
+                    `;
+                });
+                container.innerHTML += html;
+            }
+        }
+
+        function submitVote() {
+            let selections = {};
+            let allSelected = true;
+
+            for (const position in candidates) {
+                const selected = document.querySelector(`input[name='${position}']:checked`);
+                if (selected) {
+                    selections[position] = selected.value;
+                } else {
+                    allSelected = false;
+                }
+            }
+
+            if (!allSelected) {
+                alert("Please select a candidate for each position.");
+                return;
+            }
+            alert("Vote submitted successfully!");
+            window.location.href = 'blockchain.html';
+        }
+
+        renderCandidates();
+    </script>
+</body>
+
+</html>

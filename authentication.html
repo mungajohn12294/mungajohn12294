@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP - True Vote</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ffffff, #01874D);
+        }
+        
+        .container {
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid #000000;
+            border-radius: 10px;
+        }
+        
+        h1 {
+            color: #000000;
+            margin-bottom: 20px;
+        }
+        
+        input[type="text"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #10c856;
+            color: white;
+            border-radius: 5px;
+        }
+        
+        button:hover {
+            background-color: #12aa0d;
+        }
+        
+        .message {
+            margin: 15px 0;
+            color: #333;
+            font-size: 1em;
+        }
+        
+        footer {
+            background-color: #000000;
+            padding: 10px 0;
+            text-align: center;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>OTP Verification</h2>
+        <p>Enter the OTP sent to your registered phone number.</p>
+        <input type="text" id="otp" placeholder="Enter OTP" maxlength="6">
+        <button onclick="verifyOTP()">Verify</button>
+        <p id="message" style="color: red; display: none;">Invalid OTP. Try again.</p>
+    </div>
+    <script>
+        function verifyOTP() {
+            const otp = document.getElementById('otp').value;
+            if (otp === "123456") { // Placeholder OTP for testing
+                alert("OTP Verified Successfully");
+                window.location.href = "biometric.html";
+            } else {
+                document.getElementById('message').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>

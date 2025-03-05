@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True Vote - Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ffffff, #01874D);
+        }
+        
+        .container {
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid #000000;
+            border-radius: 10px;
+        }
+        
+        h1 {
+            color: #000000;
+            margin-bottom: 20px;
+        }
+        
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #10c856;
+            color: white;
+            border-radius: 5px;
+        }
+        
+        button:hover {
+            background-color: #12aa0d;
+        }
+        
+        .message {
+            margin: 15px 0;
+            color: #333;
+            font-size: 1em;
+        }
+        
+        footer {
+            background-color: #000000;
+            padding: 10px 0;
+            text-align: center;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>True Vote - Sign Up</h1>
+        <input type="text" id="idNumber" placeholder="ID Number">
+        <input type="text" id="voterNumber" placeholder="Voter's Number">
+        <input type="tel" id="phoneNumber" placeholder="Phone Number">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="signUp()">Sign Up</button>
+        <div class="message" id="message"></div>
+        <p>Already have an account? <a href="authentication.html">Login</a></p>
+    </div>
+    <footer>
+        <p>&copy; 2025 True Vote. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function signUp() {
+            const idNumber = document.getElementById('idNumber').value;
+            const voterNumber = document.getElementById('voterNumber').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const password = document.getElementById('password').value;
+            const message = document.getElementById('message');
+
+            // For simplicity, we'll just display a message
+            message.style.color = "green";
+            message.innerText = "Sign up successful! Redirecting to login...";
+            setTimeout(() => {
+                window.location.href = 'authentication.html';
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>

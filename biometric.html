@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biometric Verification - True Vote</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffffff, #01874D);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 350px;
+        }
+        
+        h2 {
+            color: #000000;
+        }
+        
+        .scanner {
+            width: 120px;
+            height: 120px;
+            margin: 15px auto;
+            border-radius: 10px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .scanner img {
+            width: 80px;
+        }
+        
+        .captcha-box {
+            margin-top: 15px;
+        }
+        
+        .captcha-input {
+            width: 60px;
+            text-align: center;
+        }
+        
+        .btn {
+            background-color: #10c856;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background-color: #12aa0d;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Biometric Verification</h2>
+        <p>Tap the scanner below to verify.</p>
+        <div class="scanner" id="fingerprintScanner">
+            <img src="https://cdn-icons-png.flaticon.com/512/6348/6348297.png" alt="Fingerprint Scanner">
+        </div>
+        <p id="statusMessage"></p>
+        <div class="captcha-box">
+            <span id="captchaCode" class="font-bold"></span>
+            <input type="text" id="captchaInput" class="captcha-input" placeholder="Enter">
+        </div>
+        <p id="captchaError" class="error"></p>
+        <button class="btn" onclick="verifyBoth()">Verify & Proceed</button>
+    </div>
+    <script>
+        let biometricVerified = false;
+        let captchaValue = generateCaptcha();
+
+        function generateCaptcha() {
+            let captcha = Math.floor(1000 + Math.random() * 9000);
+            document.getElementById("captchaCode").innerText = captcha;
+            return captcha;
+        }
+
+        function verifyCaptcha() {
+            let userValue = document.getElementById("captchaInput").value;
+            if (userValue == captchaValue) {
+                return true;
+            } else {
+                alert("Incorrect CAPTCHA. Try again!");
+                captchaValue = generateCaptcha();
+                return false;
+            }
+        }
+
+        document.getElementById("fingerprintScanner").addEventListener("click", function() {
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.innerText = "Scanning...";
+            statusMessage.style.color = "blue";
+            setTimeout(() => {
+                if (Math.random() > 0.3) {
+                    biometricVerified = true;
+                    statusMessage.innerText = "Verification Successful!";
+                    statusMessage.style.color = "green";
+                } else {
+                    statusMessage.innerText = "Verification Failed. Try again.";
+                    statusMessage.style.color = "red";
+                }
+            }, 2000);
+        });
+
+        function verifyBoth() {
+            if (!biometricVerified) {
+                alert("Please complete biometric verification first.");
+                return;
+            }
+            if (!verifyCaptcha()) {
+                return;
+            }
+            alert("Verification completed! Redirecting...");
+            window.location.href = 'location.html';
+        }
+    </script>
+</body>
+
+</html>

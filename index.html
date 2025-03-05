@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True Vote - Online Voting</title>
+    <style>
+        /* General Styles */
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #008000, #ffffff, #ff0000);
+            color: black;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        /* Floating Top Menu */
+        
+        .top-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: white;
+            z-index: 1000;
+        }
+        
+        .top-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            transition: 0.3s;
+        }
+        
+        .top-menu a:hover {
+            color: #ffcc00;
+        }
+        /* Hero Section */
+        
+        .hero {
+            margin-top: 80px;
+            padding: 50px;
+            background: url('voting-bg.jpg') center/cover;
+            color: white;
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+        }
+        
+        .countdown {
+            font-size: 24px;
+            margin-top: 10px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .vote-btn {
+            background: #ffcc00;
+            color: black;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: transform 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .vote-btn:hover {
+            transform: scale(1.1);
+        }
+        /* Information Section */
+        
+        .info {
+            margin: 40px auto;
+            padding: 20px;
+            max-width: 800px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .info h2 {
+            color: #008000;
+        }
+        /* Footer */
+        
+        .footer {
+            margin-top: 30px;
+            padding: 10px;
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating Menu -->
+    <div class="top-menu">
+        <a href="#">Home</a>
+        <a href="signup.html">Vote Now</a>
+        <a href="#">Results</a>
+        <a href="#">Candidates</a>
+        <a href="blockchain.html">Help</a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Kenya Decides: Secure Online Voting</h1>
+        <p>Cast your vote securely and transparently.</p>
+        <div class="countdown" id="countdown"></div>
+        <a href="signup.html" class="vote-btn">Vote Now</a>
+    </div>
+
+    <!-- Information Section -->
+    <div class="info">
+        <h2>About Online Voting</h2>
+        <p>Online voting is a modern approach to elections, allowing voters to cast their ballots securely over the internet. It eliminates the need for physical polling stations, reduces costs, and enhances accessibility.</p>
+        <h2>Why Online Voting Matters</h2>
+        <ul>
+            <li><strong>Convenience:</strong> Vote from anywhere, anytime.</li>
+            <li><strong>Security:</strong> Advanced encryption and authentication methods ensure safety.</li>
+            <li><strong>Transparency:</strong> Real-time tracking and audit logs for accountability.</li>
+            <li><strong>Inclusion:</strong> Provides easier access for people with disabilities and those in remote areas.</li>
+            <li><strong>Faster Results:</strong> Automated counting speeds up election processes.</li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2025 True Vote | Contact: 0116225435 | Email: truevote319@gmail.com
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const electionDate = new Date('2025-08-09T00:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = electionDate - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = `Time Left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+
+</html>

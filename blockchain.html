@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote Confirmation - True Vote</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .dark-mode {
+            background-color: #1a202c;
+            color: #f8f9fa;
+        }
+        
+        .btn {
+            transition: transform 0.2s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen">
+    <div class="container animate__animated animate__fadeIn">
+        <h1 class="text-2xl font-bold mb-4">🗳 Vote Confirmation</h1>
+        <p class="text-gray-600">Thank you for voting! Below is your unique vote receipt.</p>
+        <div id="voteReceipt" class="my-4 p-4 bg-gray-100 rounded text-gray-800"></div>
+        <div id="qrcode" class="my-4"></div>
+        <button onclick="downloadReceipt()" class="px-4 py-2 bg-blue-600 text-white rounded btn">📥 Download Receipt</button>
+    </div>
+
+    <script>
+        class Block {
+            constructor(index, timestamp, data, previousHash = "") {
+                this.index = index;
+                this.timestamp = timestamp;
+                this.data = data;
+                this.previousHash = previousHash;
+                this.hash = this.calculateHash();
+            }
+
+            calculateHash() {
+                return CryptoJS.SHA256(this.index + this.timestamp + JSON.stringify(this.data) + this.previousHash).toString();
+            }
+        }
+
+        class Blockchain {
+            constructor() {
+                this.chain = [this.createGenesisBlock()];
+            }
+
+            createGenesisBlock() {
+                return new Block(0, "2025-01-01", "Genesis Block", "0");
+            }
+
+            getLatestBlock() {
+                return this.chain[this.chain.length - 1];
+            }
+
+            addBlock(newBlock) {
+                newBlock.previousHash = this.getLatestBlock().hash;
+                newBlock.hash = newBlock.calculateHash();
+                this.chain.push(newBlock);
+            }
+        }
+
+        const voteChain = new Blockchain();
+
+        function generateReceipt() {
+            const voteData = {
+                candidate: "Candidate A",
+                timestamp: new Date().toISOString()
+            };
+            const voterHash = CryptoJS.SHA256("Voter123").toString();
+            const voteBlock = new Block(voteChain.chain.length, new Date().toISOString(), {
+                voterHash,
+                ...voteData
+            });
+            voteChain.addBlock(voteBlock);
+
+            document.getElementById("voteReceipt").innerText = `Receipt ID: ${voteBlock.hash}`;
+            new QRCode(document.getElementById("qrcode"), voteBlock.hash);
+        }
+
+        function downloadReceipt() {
+            const receipt = document.getElementById("voteReceipt").innerText;
+            const blob = new Blob([receipt], {
+                type: "text/plain"
+            });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "Vote_Receipt.txt";
+            link.click();
+            window.location.href = 'thankyou.html';
+        }
+        generateReceipt();
+    </script>
+</body>
+
+</html>

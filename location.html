@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True Vote - Location Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ffffff, #01874D);
+        }
+        
+        .container {
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid #000000;
+            border-radius: 10px;
+        }
+        
+        h1 {
+            color: #000000;
+            margin-bottom: 20px;
+        }
+        
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #C8102E;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+        
+        button:hover {
+            background-color: #A00D23;
+        }
+        
+        .message {
+            margin: 15px 0;
+            color: #333;
+            font-size: 1em;
+        }
+        
+        footer {
+            background-color: #000000;
+            padding: 10px 0;
+            text-align: center;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>True Vote - Select Your Location</h1>
+
+        <label for="region">Region:</label>
+        <select id="region" onchange="updateCounties()">
+        <option value="">-- Select Region --</option>
+        <option value="central">Central</option>
+        <option value="rift_valley">Rift Valley</option>
+        <option value="eastern">Eastern</option>
+        <option value="coast">Coast</option>
+        <option value="nairobi">Nairobi</option>
+        <option value="western">Western</option>
+        <option value="northern">Northern</option>
+    </select>
+
+        <label for="county">County:</label>
+        <select id="county" onchange="updateConstituencies()" disabled>
+        <option value="">-- Select County --</option>
+    </select>
+
+        <label for="constituency">Constituency:</label>
+        <select id="constituency" onchange="updateWards()" disabled>
+        <option value="">-- Select Constituency --</option>
+    </select>
+
+        <label for="ward">Ward:</label>
+        <select id="ward" disabled>
+        <option value="">-- Select Ward --</option>
+    </select>
+
+        <button onclick="submitLocation()">Proceed</button>
+
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        const countiesData = {
+            central: ["Kiambu", "Murang'a", "Nyeri", "Kirinyaga", "Nyandarua"],
+            rift_valley: ["Nakuru", "Uasin Gishu", "Kericho", "Baringo", "Narok"],
+            eastern: ["Embu", "Meru", "Kitui", "Machakos", "Isiolo"],
+            coast: ["Mombasa", "Kilifi", "Kwale", "Taita Taveta", "Lamu"],
+            nairobi: ["Nairobi"],
+            western: ["Kakamega", "Vihiga", "Bungoma", "Busia"],
+            northern: ["Marsabit", "Mandera", "Wajir", "Turkana"]
+        };
+
+        const constituenciesData = {
+            Kiambu: ["Thika Town", "Ruiru", "Kiambu Town", "Gatundu South"],
+            Nairobi: ["Westlands", "Dagoretti North", "Embakasi East", "Starehe"],
+            Nakuru: ["Naivasha", "Nakuru Town East", "Gilgil"],
+            Kakamega: ["Lurambi", "Ikolomani", "Mumias West"],
+            Mombasa: ["Mvita", "Changamwe", "Likoni"]
+        };
+
+        const wardsData = {
+            "Thika Town": ["Township", "Hospital", "Kamenu"],
+            "Nairobi": ["Karen", "Ngara", "Eastleigh North"],
+            "Mvita": ["Tudor", "Majengo", "Ganjoni"],
+            "Naivasha": ["Lake View", "Mai Mahiu", "Biashara"]
+        };
+
+        function updateCounties() {
+            const region = document.getElementById("region").value;
+            const countySelect = document.getElementById("county");
+            const constituencySelect = document.getElementById("constituency");
+            const wardSelect = document.getElementById("ward");
+
+            countySelect.innerHTML = '<option value="">-- Select County --</option>';
+            constituencySelect.innerHTML = '<option value="">-- Select Constituency --</option>';
+            wardSelect.innerHTML = '<option value="">-- Select Ward --</option>';
+
+            countySelect.disabled = true;
+            constituencySelect.disabled = true;
+            wardSelect.disabled = true;
+
+            if (region && countiesData[region]) {
+                countiesData[region].forEach(county => {
+                    let option = new Option(county, county);
+                    countySelect.appendChild(option);
+                });
+                countySelect.disabled = false;
+            }
+        }
+
+        function updateConstituencies() {
+            const county = document.getElementById("county").value;
+            const constituencySelect = document.getElementById("constituency");
+            const wardSelect = document.getElementById("ward");
+
+            constituencySelect.innerHTML = '<option value="">-- Select Constituency --</option>';
+            wardSelect.innerHTML = '<option value="">-- Select Ward --</option>';
+
+            constituencySelect.disabled = true;
+            wardSelect.disabled = true;
+
+            if (county && constituenciesData[county]) {
+                constituenciesData[county].forEach(constituency => {
+                    let option = new Option(constituency, constituency);
+                    constituencySelect.appendChild(option);
+                });
+                constituencySelect.disabled = false;
+            }
+        }
+
+        function updateWards() {
+            const constituency = document.getElementById("constituency").value;
+            const wardSelect = document.getElementById("ward");
+
+            wardSelect.innerHTML = '<option value="">-- Select Ward --</option>';
+            wardSelect.disabled = true;
+
+            if (constituency && wardsData[constituency]) {
+                wardsData[constituency].forEach(ward => {
+                    let option = new Option(ward, ward);
+                    wardSelect.appendChild(option);
+                });
+                wardSelect.disabled = false;
+            }
+        }
+
+        function submitLocation() {
+            const ward = document.getElementById("ward").value;
+            if (!ward) {
+                document.getElementById("message").innerText = "Please complete your selection!";
+            } else {
+                document.getElementById("message").innerText = "Location saved! Redirecting...";
+                setTimeout(() => {
+                    window.location.href = "candidates.html";
+                }, 1000);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
