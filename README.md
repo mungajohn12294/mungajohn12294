@@ -44,8 +44,8 @@
 ---
 
 ### Projects & Highlights
-- [Project A](https://github.com/mungajohn12294/Webchat) — short description
-- [Project B](https://github.com/mungajohn12294/Taptap) — short description
+- [webchat](https://github.com/mungajohn12294/Webchat) — A web based chatting app (html css js)
+- [Taptap](https://github.com/mungajohn12294/Taptap) — A react based app for chatting (react app)
 
 ---
 
