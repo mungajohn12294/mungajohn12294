@@ -58,7 +58,7 @@ I follow a structured roadmap to master programming and development skills:
 ---
 
 ## 📫 Contact Me
-- **Email:** truevote319@gmail.com  
+- **Email:** johnmunga12294@gmail.com  
 - **Phone:** 0116225435  
 
 Feel free to reach out if you want to collaborate on projects, learn together, or just chat about tech!
