@@ -50,10 +50,7 @@
 ---
 
 ### Connect with me
-- Website: https://your-website.example
 - Email: mungajohn12294@gmail.com
-- LinkedIn: https://www.linkedin.com/in/your-linkedin
-- Twitter: https://twitter.com/your_twitter
 
 ---
 
