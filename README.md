@@ -1,18 +1,18 @@
 # Hi there, I'm Munga 👋 (mungajohn12294)
 
-[![Website](https://img.shields.io/badge/website-portfolio-blue?style=for-the-badge&logo=google-chrome)](https://your-website.example)
-[![Linkedin](https://img.shields.io/badge/-LinkedIn-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/your-linkedin)
-[![Twitter Follow](https://img.shields.io/twitter/follow/your_twitter?style=for-the-badge&logo=twitter)](https://twitter.com/your_twitter)
+[![Website](https://img.shields.io/badge/website-portfolio-blue?style=for-the-badge&logo=google-chrome)]()
+[![Linkedin](https://img.shields.io/badge/-LinkedIn-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/)
+[![Twitter Follow](https://img.shields.io/twitter/follow/your_twitter?style=for-the-badge&logo=twitter)](https://twitter.com/)
 [![Gmail](https://img.shields.io/badge/-email-d14836?style=for-the-badge&logo=gmail)](mailto:mungajohn12294.com)
 
 ---
 
 ### About me
-- 🔭 I’m currently working on: Clouding and blockchain — short one-line description.
-- 🌱 I’m learning: Topic(s) you are learning.
+- 🔭 I’m currently working on: Clouding and blockchain — 
+- 🌱 I’m learning: blockchain,databases,
 - 👯 I’m open to collaborating on: Project types you want to collaborate on.
-- 💬 Ask me about: Tech you know well.
-- ⚡ Fun fact: Short personal fact.
+- 💬 Ask me about: database etc
+- ⚡ Fun fact: love coding
 
 ---
 
